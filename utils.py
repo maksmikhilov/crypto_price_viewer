@@ -14,7 +14,9 @@ def parse_response(exchange, data):
         return float(data['price'])
         
 def calculate_deviation(data_dict, key):
-    other_values = [value for k, value in data_dict.items() if k != key]
+    if not isinstance(data_dict[key], float):
+        return 0
+    other_values = [value for k, value in data_dict.items() if k != key and isinstance(value, float)]
     mean_without_current = sum(other_values) / len(other_values)
     deviation = abs((data_dict[key] - mean_without_current) / mean_without_current) * 100
     return deviation
@@ -28,5 +30,8 @@ def filter_dict(data_dict):
     return filtered_dict
 
 def calculate_median(data_dict):
-    prices = [price for exchange_symbol, price in data_dict.items() if isinstance (price,float)]
+    prices = [price for exchange_symbol, price in data_dict.items() if isinstance(price, float)]
+    if len(prices) == 2:
+        return sum(prices) / 2
+        
     return statistics.median(prices)

@@ -11,10 +11,13 @@ def get_symbol_prices(symbol, exchanges):
         try:
             price = requests.get(url)   
             price = price.json()
+            price = utils.parse_response(exchange, price)
+            symbol_result[exchange_symbol] = price
+            if not isinstance(price, float):
+                symbol_result[exchange_symbol] = f'{exchange} failed'
         except:
             symbol_result[exchange_symbol] = f'{exchange} failed'
             continue
-        symbol_result[exchange_symbol] = utils.parse_response(exchange, price)
     symbol_result = utils.filter_dict(symbol_result)
     key_median = f'{symbol}_MEDIAN'
     symbol_result[key_median] = utils.calculate_median(symbol_result)
