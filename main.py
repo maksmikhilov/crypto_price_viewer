@@ -3,6 +3,7 @@ import json
 from datetime import datetime
 import utils
 import config
+import time 
 
 def get_symbol_prices(symbol, exchanges):
     symbol_result = dict()
@@ -23,17 +24,13 @@ def get_symbol_prices(symbol, exchanges):
     symbol_result[key_median] = utils.calculate_median(symbol_result)
     return symbol_result
     
-work = True
-while work:
+while True:
     result = dict()
     
     for symbol, exchanges in config.symbols.items():
         symbol_result = get_symbol_prices(symbol, exchanges)
         result.update(symbol_result)
-    work = False
-    print(result)
-    current_dt = datetime.now()
-    file_name = current_dt.strftime("%Y-%m-%d_%H-%M-%S") + ".json"
+    file_name = datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".json"
     with open(file_name, 'w') as json_file:
         json.dump(result, json_file, indent=4)
-    
+    time.sleep(60)
