@@ -21,8 +21,7 @@ symbols = {
         'KRAKEN': kraken_url+'XMRUSDT',
         'COINBASE': coinbase_url('XMR-USDT'),
         'KUKOIN': kukoin_url+'XMR-USDT',
-        'POLONIEX': poloniex_url('XMR_USDT'),
-        'BINANCE': binance_url+'XMRUSDT',
+        'POLONIEX': poloniex_url('XMR_USDT')
     },
     'BTCUSDT': {
         'KRAKEN': kraken_url+'BTCUSDT',
@@ -36,8 +35,7 @@ symbols = {
         'KRAKEN': kraken_url+'XMRBTC',
         'COINBASE': coinbase_url('XMR-BTC'),
         'POLONIEX': poloniex_url('XMR_BTC'),
-        'KUKOIN': kukoin_url+'XMR-BTC',
-        'BINANCE': binance_url+'XMRBTC',
+        'KUKOIN': kukoin_url+'XMR-BTC'
     }
 }
 
