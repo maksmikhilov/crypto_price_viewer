@@ -33,5 +33,9 @@ def calculate_median(data_dict):
     prices = [price for exchange_symbol, price in data_dict.items() if isinstance(price, float)]
     if len(prices) == 2:
         return sum(prices) / 2
+    if len(prices) == 1:
+        return prices[0]
+    if len(prices) == 0:
+        return 0
         
     return statistics.median(prices)
